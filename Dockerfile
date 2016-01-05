@@ -71,7 +71,6 @@ ADD assets /assets
 
 RUN cp /assets/config/tomcat/tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
 
-
 RUN chmod u+x /assets/startup.sh
 
 WORKDIR /root

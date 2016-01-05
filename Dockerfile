@@ -49,8 +49,6 @@ EXPOSE 22
 
 ENV TOMCAT_VERSION 8.0.22
 
-ENV ACTIVITI_VERSION 5.17.0
-
 ENV MYSQL_CONNECTOR_JAVA_VERSION 5.1.35
 
 RUN wget http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/catalina.tar.gz

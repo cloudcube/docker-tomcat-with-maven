@@ -67,9 +67,10 @@ RUN mv /opt/tomcat/webapps/host-manager /opt/tomcat/host-manager.bak && \
 
 VOLUME ["/opt/tomcat/webapps"]
 
+ADD assets /assets
+
 RUN cp /assets/config/tomcat/tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
 
-ADD assets /assets
 
 RUN chmod u+x /assets/startup.sh
 

@@ -20,6 +20,15 @@ RUN \
 
 RUN echo "export LC_ALL=C" >> /root/.bashrc
 
+# 设置环境变量，所有操作都是非交互式的
+ENV DEBIAN_FRONTEND noninteractive
+
+# 注意这里要更改系统的时区设置，因为在 web 应用中经常会用到时区这个系统变量，默认的 ubuntu 会让你的应用程序发生不可思议的效果哦
+RUN echo "Asia/Chongqing" > /etc/timezone && \
+        dpkg-reconfigure -f noninteractive tzdata
+
+
+
 # Install Supervisor.
 RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 

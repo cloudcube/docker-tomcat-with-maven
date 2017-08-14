@@ -26,7 +26,8 @@ fi
 
 isExist=`cat /opt/tomcat/bin/catalina.sh|grep "{{JAVA_OPTS}}"`
 if [ -n "$isExist" ];then
-  TOMCAT_JAVA_OPTS= 'JAVA_OPTS="\"\$JAVA_OPTS\:-Xmx'"${TOMCAT_XMX}"' -Xms'"${TOMCAT_XMS}"' -Xmn'"${TOMCAT_XMN}"' -Xss'"${TOMCAT_XSS}"'\""'
+  TOMCAT_JAVA_OPTS= "JAVA_OPTS="\"\$JAVA_OPTS\:-Xmx'"${TOMCAT_XMX}"' -Xms'"${TOMCAT_XMS}"' -Xmn'"${TOMCAT_XMN}"' -Xss'"${TOMCAT_XSS}"'\"""
+  echo $TOMCAT_JAVA_OPTS
   sed 's,'\#\ {{JAVA_OPTS}}','"${TOMCAT_JAVA_OPTS}"',g' -i /opt/tomcat/bin/catalina.sh
 fi
 

@@ -24,7 +24,7 @@ if [ ! -f /opt/tomcat/webapps/isFile ]; then
     mv /opt/tomcat/ROOT.bak /opt/tomcat/webapps/ROOT
 fi
 
-isExist=`cat /root/tmp/apache-tomcat-8.0.39/bin/catalina.sh|grep "{{JAVA_OPTS}}"`
+isExist=`cat /opt/tomcat/bin/catalina.sh|grep "{{JAVA_OPTS}}"`
 if [ -n "$isExist" ];then
   TOMCAT_JAVA_OPTS= 'JAVA_OPTS="\"\$JAVA_OPTS\:-Xmx'"${TOMCAT_XMX}"' -Xms'"${TOMCAT_XMS}"' -Xmn'"${TOMCAT_XMN}"' -Xss'"${TOMCAT_XSS}"'\""'
   sed 's,'\#\ {{JAVA_OPTS}}','"${TOMCAT_JAVA_OPTS}"',g' -i /opt/tomcat/bin/catalina.sh

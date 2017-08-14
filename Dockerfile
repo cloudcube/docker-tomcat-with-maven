@@ -10,7 +10,7 @@ ENV REFRESHED_AT 2015-12-31 12:00
 
 USER root
 
-RUN \ 
+RUN \
 	sed -i 's/httpredir.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
 	sed -i 's/httpredir.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/jessie-backports.list && \
     apt-get update && \
@@ -50,6 +50,8 @@ ADD auth/id_rsa_docker /root/.ssh/id_rsa
 
 ADD auth/id_rsa_docker.pub /root/.ssh/id_rsa.pub
 
+
+
 RUN chmod 0600 /root/.ssh/*
 
 EXPOSE 8080
@@ -84,6 +86,8 @@ VOLUME ["/opt/tomcat/webapps"]
 ADD assets /assets
 
 RUN cp /assets/config/tomcat/tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
+
+RUN cp /assets/config/tomcat/catalina.sh.orig /opt/apache-tomcat-${TOMCAT_VERSION}/conf/catalina.sh
 
 RUN chmod u+x /assets/startup.sh
 

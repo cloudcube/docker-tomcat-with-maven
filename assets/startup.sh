@@ -26,9 +26,11 @@ fi
 
 isExist=`cat /opt/tomcat/bin/catalina.sh|grep "{{JAVA_OPTS}}"`
 if [ -n "$isExist" ];then
-  TOMCAT_JAVA_OPTS= "JAVA_OPTS="\"\$JAVA_OPTS\:-Xmx'"${TOMCAT_XMX}"' -Xms'"${TOMCAT_XMS}"' -Xmn'"${TOMCAT_XMN}"' -Xss'"${TOMCAT_XSS}"'\"""
-  echo $TOMCAT_JAVA_OPTS
-  sed 's,'\#\ {{JAVA_OPTS}}','"${TOMCAT_JAVA_OPTS}"',g' -i /opt/tomcat/bin/catalina.sh
+  sed 's,'{{TOMCAT_XMX}}','"${TOMCAT_XMX}"',g' -i /opt/tomcat/bin/catalina.sh
+  sed 's,'{{TOMCAT_XMS}}','"${TOMCAT_XMS}"',g' -i /opt/tomcat/bin/catalina.sh
+  sed 's,'{{TOMCAT_XMN}}','"${TOMCAT_XMN}"',g' -i /opt/tomcat/bin/catalina.sh
+  sed 's,'{{TOMCAT_XSS}}','"${TOMCAT_XSS}"',g' -i /opt/tomcat/bin/catalina.sh
+  sed 's,'\#\ {{JAVA_OPTS}}',' ',g' -i /opt/tomcat/bin/catalina.sh
 fi
 
 exec supervisord -c /etc/supervisor/supervisord.conf

@@ -12,7 +12,6 @@ USER root
 
 RUN \
 	sed -i 's/httpredir.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-	sed -i 's/httpredir.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/jessie-backports.list && \
     apt-get update && \
     apt-get install git openssh-server supervisor fonts-arphic-ukai -y && \
 	apt-get clean && \

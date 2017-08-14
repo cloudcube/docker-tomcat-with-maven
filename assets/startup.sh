@@ -4,10 +4,10 @@ set -x
 
 TOMCAT_ADMIN_USER=${TOMCAT_ADMIN_USER:-admin}
 TOMCAT_ADMIN_PASSWORD=${TOMCAT_ADMIN_PASSWORD:-admin}
-TOMCAT_XMX=${XMX:-128m}
-TOMCAT_XMS=${XMS:-64m}
-TOMCAT_XMN=${XMN:-32m}
-TOMCAT_XSS=${XSS:-16m}
+TOMCAT_XMX=${XMX:-1024m}
+TOMCAT_XMS=${XMS:-128m}
+TOMCAT_PERM_SIZE=${PERM_SIZE:-64m}
+TOMCAT_MAX_PERM_SIZE=${MAX_PERM_SIZE:-256m}
 
 
 
@@ -24,13 +24,12 @@ if [ ! -f /opt/tomcat/webapps/isFile ]; then
     mv /opt/tomcat/ROOT.bak /opt/tomcat/webapps/ROOT
 fi
 
-isExist=`cat /opt/tomcat/bin/catalina.sh|grep "{{JAVA_OPTS}}"`
-if [ -n "$isExist" ];then
-  sed 's,'{{TOMCAT_XMX}}','"${TOMCAT_XMX}"',g' -i /opt/tomcat/bin/catalina.sh
-  sed 's,'{{TOMCAT_XMS}}','"${TOMCAT_XMS}"',g' -i /opt/tomcat/bin/catalina.sh
-  sed 's,'{{TOMCAT_XMN}}','"${TOMCAT_XMN}"',g' -i /opt/tomcat/bin/catalina.sh
-  sed 's,'{{TOMCAT_XSS}}','"${TOMCAT_XSS}"',g' -i /opt/tomcat/bin/catalina.sh
-  sed 's,'\#\ {{JAVA_OPTS}}',' ',g' -i /opt/tomcat/bin/catalina.sh
+if [ ! -f /opt/tomcat/bin/isFile ];then
+  sed 's,'{{TOMCAT_XMX}}','"${TOMCAT_XMX}"',g' -i /opt/tomcat/bin/setenv.sh
+  sed 's,'{{TOMCAT_XMS}}','"${TOMCAT_XMS}"',g' -i /opt/tomcat/bin/setenv.sh
+  sed 's,'{{TOMCAT_PERM_SIZE}}','"${TOMCAT_PERM_SIZE}"',g' -i /opt/tomcat/bin/setenv.sh
+  sed 's,'{{TOMCAT_MAX_PERM_SIZE}}','"${TOMCAT_MAX_PERM_SIZE}"',g' -i /opt/tomcat/bin/setenv.sh
+  touch /opt/tomcat/bin/isFile
 fi
 
 exec supervisord -c /etc/supervisor/supervisord.conf

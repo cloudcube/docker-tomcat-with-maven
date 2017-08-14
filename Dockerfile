@@ -86,7 +86,7 @@ ADD assets /assets
 
 RUN cp /assets/config/tomcat/tomcat-users.xml /opt/apache-tomcat-${TOMCAT_VERSION}/conf/
 
-RUN cp /assets/config/tomcat/catalina.sh.orig /opt/apache-tomcat-${TOMCAT_VERSION}/bin/catalina.sh
+RUN cp /assets/config/tomcat/setenv.sh /opt/apache-tomcat-${TOMCAT_VERSION}/bin/setenv.sh
 
 RUN chmod u+x /assets/startup.sh
 

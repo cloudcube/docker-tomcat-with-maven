@@ -247,7 +247,7 @@ fi
 # org.apache.catalina.security.SecurityListener
 #JAVA_OPTS="$JAVA_OPTS -Dorg.apache.catalina.security.SecurityListener.UMASK=`umask`"
 # {{JAVA_OPTS}}
-JAVA_OPTS="$JAVA_OPTS -Xmx{{TOMCAT_XMX}} -Xms{{TOMCAT_XMS}} -Xmn{{TOMCAT_XMN}} -Xss{{TOMCAT_XSS}}"
+
 
 # ----- Execute The Requested Command -----------------------------------------
 

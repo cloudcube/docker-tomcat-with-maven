@@ -16,10 +16,10 @@ FROM cloudcube/tomcat-with-maven
 docker run \
 	--name demo001 \
 	-d -p 18080:8080 \
-	-e XMX 512m \
-	-e XMS 256m \
-	-e PERM_SIZE 128m \
-	-e MAX_PERM_SIZE 512m \
+	-e "XMX=512m" \
+	-e "XMS=256m" \
+	-e "PERM_SIZE=128m" \
+	-e "MAX_PERM_SIZE=512m" \
 	cloudcube/tomcat-with-maven
 ```
 默认值设置  

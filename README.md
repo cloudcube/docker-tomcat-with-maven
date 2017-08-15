@@ -20,6 +20,7 @@ docker run \
 	-e "XMS=256m" \
 	-e "PERM_SIZE=128m" \
 	-e "MAX_PERM_SIZE=512m" \
+	-e "LOG_GC_FILE=/opt/tomcat/logs/gc.log"
 	cloudcube/tomcat-with-maven
 ```
 默认值设置  
@@ -28,3 +29,4 @@ docker run \
 - PERM_SIZE
 - MAX_PERM_SIZE 64m
 - MAX_PERM_SIZE 256m
+- LOG_GC_FILE /opt/tomcat/logs/gc.log

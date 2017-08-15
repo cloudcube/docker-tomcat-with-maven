@@ -8,7 +8,7 @@ TOMCAT_XMX=${XMX:-1024m}
 TOMCAT_XMS=${XMS:-128m}
 TOMCAT_PERM_SIZE=${PERM_SIZE:-64m}
 TOMCAT_MAX_PERM_SIZE=${MAX_PERM_SIZE:-256m}
-
+LOG_GC_FILE=${LOG_GC_FILE:-/opt/tomcat/logs/gc.log}
 
 
 
@@ -29,6 +29,7 @@ if [ ! -f /opt/tomcat/bin/isFile ];then
   sed 's,'{{TOMCAT_XMS}}','"${TOMCAT_XMS}"',g' -i /opt/tomcat/bin/setenv.sh
   sed 's,'{{TOMCAT_PERM_SIZE}}','"${TOMCAT_PERM_SIZE}"',g' -i /opt/tomcat/bin/setenv.sh
   sed 's,'{{TOMCAT_MAX_PERM_SIZE}}','"${TOMCAT_MAX_PERM_SIZE}"',g' -i /opt/tomcat/bin/setenv.sh
+  sed 's,'{{LOG_GC_FILE}}','"${LOG_GC_FILE}"',g' -i /opt/tomcat/bin/setenv.sh
   touch /opt/tomcat/bin/isFile
 fi
 

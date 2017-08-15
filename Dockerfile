@@ -80,7 +80,7 @@ RUN mv /opt/tomcat/webapps/host-manager /opt/tomcat/host-manager.bak && \
 
 # To install jar files first we need to deploy war files manually
 
-VOLUME ["/opt/tomcat/webapps"]
+VOLUME ["/opt/tomcat/webapps","/opt/tomcat/logs"]
 
 ADD assets /assets
 
